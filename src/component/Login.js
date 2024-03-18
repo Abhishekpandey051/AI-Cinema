@@ -7,13 +7,12 @@ import {
 } from "firebase/auth";
 import { checkValidation } from "../utils/validation";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { userAVT } from "../utils/constant";
 const Login = () => {
   const [isSignInForm, setIsSingnInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch()
   const email = useRef(null);
   const password = useRef(null);
@@ -35,10 +34,9 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png",
+            photoURL: userAVT
           })
             .then(() => {
               // Profile updated!
@@ -51,7 +49,6 @@ const Login = () => {
             photoURL: photoURL,
           })
         );
-              navigate("/browser");
               // ...
             })
             .catch((error) => {
@@ -77,7 +74,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browser");
           // ...
         })
         .catch((error) => {
