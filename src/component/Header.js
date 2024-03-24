@@ -49,7 +49,7 @@ const Header = () => {
             <img className="w-44" src={LOGO} alt="logo"/>
             
            {user &&( <div className="flex">
-            <img className="w-12 h-12" alt="user_img" src= {user.photoURL}/>
+            <img className="w-12 h-12 rounded mt-3 mx-2" alt="user_img" src= {user.photoURL}/>
                 <button className="font-bold text-white" onClick={handleSingout}>Sign Out</button>
             </div>)}
             </div>
